@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Biblia de los Esquejes | Multiplica tus plantas infinitamente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #2e7d32;
+            --green-light: #81c784;
+            --green-deep: #1b5e20;
+            --beige: #f3f0e6;
+            --gold: #fdd835;
+            --text-dark: #1b3b24;
+            --text-light: #f8fff8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--beige);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gold), #ffb300);
+            color: #1a280a;
+            font-weight: 700;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 15px 25px rgba(46, 125, 50, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 35px rgba(46, 125, 50, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.85rem 1.8rem;
+            background: linear-gradient(135deg, var(--green-light), var(--green-dark));
+            color: white;
+            font-weight: 600;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 12px 24px rgba(46, 125, 50, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 18px 28px rgba(46, 125, 50, 0.45);
+        }
+
+        header {
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at top left, rgba(129, 199, 132, 0.4), transparent 45%),
+                        radial-gradient(circle at bottom right, rgba(46, 125, 50, 0.45), transparent 50%),
+                        linear-gradient(135deg, rgba(46, 125, 50, 0.85), rgba(27, 94, 32, 0.9));
+            color: white;
+        }
+
+        .leaf-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background-image: url('https://images.unsplash.com/photo-1465146633011-14f9e5beab78?auto=format&fit=crop&w=300&q=60');
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.25;
+            filter: hue-rotate(30deg) saturate(1.2);
+            animation: floatLeaf 14s infinite ease-in-out;
+        }
+
+        .leaf:nth-child(odd) {
+            animation-duration: 18s;
+        }
+
+        .leaf:nth-child(1) { top: 10%; left: 5%; }
+        .leaf:nth-child(2) { top: 60%; left: 20%; }
+        .leaf:nth-child(3) { top: 30%; right: 15%; }
+        .leaf:nth-child(4) { bottom: 10%; right: 5%; }
+
+        @keyframes floatLeaf {
+            0% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-25px) rotate(6deg) scale(1.05); }
+            100% { transform: translateY(0) rotate(0deg) scale(1); }
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 7rem;
+            display: grid;
+            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            align-items: center;
+        }
+
+        .hero-copy h1 {
+            font-size: clamp(2.6rem, 4vw + 1rem, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-copy p {
+            font-size: 1.2rem;
+            max-width: 32rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .countdown {
+            margin-top: 2rem;
+            display: inline-flex;
+            gap: 1.2rem;
+            padding: 1rem 1.8rem;
+            background: rgba(14, 43, 20, 0.5);
+            border-radius: 999px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown div {
+            text-align: center;
+        }
+
+        .countdown span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .mockup {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mockup img {
+            width: min(100%, 420px);
+            filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.35));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .benefits {
+            background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(243,240,230,0.7) 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 45px rgba(46, 125, 50, 0.12);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 26px 60px rgba(46, 125, 50, 0.18);
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(129, 199, 132, 0.25);
+            display: grid;
+            place-items: center;
+            margin-bottom: 1.2rem;
+            color: var(--green-dark);
+            font-size: 1.8rem;
+        }
+
+        .cost-section {
+            background: linear-gradient(135deg, #134b21, #1f6a2d);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cost-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=60') center/cover;
+            opacity: 0.08;
+        }
+
+        .cost-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            align-items: center;
+        }
+
+        .cost-copy h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cost-copy p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        .cost-media {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cost-media img {
+            width: min(100%, 360px);
+            border-radius: 24px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+        }
+
+        .learn-section {
+            background: url('https://images.unsplash.com/photo-1429095687696-3227bb0dc1b5?auto=format&fit=crop&w=1200&q=60') center/cover;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .learn-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(18, 56, 34, 0.7);
+        }
+
+        .learn-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .learn-item {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            backdrop-filter: blur(12px);
+            text-align: center;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
+            transition: transform 0.4s ease;
+        }
+
+        .learn-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .learn-item span {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .bonuses {
+            background: var(--beige);
+        }
+
+        .bonus-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .bonus-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(46, 125, 50, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .bonus-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(129, 199, 132, 0.15), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .bonus-card:hover {
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 25px 55px rgba(46, 125, 50, 0.22);
+        }
+
+        .bonus-card:hover::after {
+            opacity: 1;
+        }
+
+        .bonus-tag {
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .testimonials {
+            background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(129,199,132,0.2));
+        }
+
+        .testimonial-slider {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(280px, 1fr);
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.15);
+            scroll-snap-align: start;
+            min-height: 260px;
+        }
+
+        .testimonial-rating {
+            color: #fdd835;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .testimonial-name img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .guarantee {
+            background: linear-gradient(135deg, var(--green-deep), #0f331a);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .guarantee-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: grid;
+            place-items: center;
+            font-size: 2.4rem;
+        }
+
+        .urgency {
+            background: url('https://images.unsplash.com/photo-1484980972926-edee96e0960d?auto=format&fit=crop&w=1200&q=60') center/cover;
+            position: relative;
+            color: white;
+        }
+
+        .urgency::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(8, 36, 16, 0.72);
+        }
+
+        .urgency-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .urgency h2 {
+            font-size: clamp(2.2rem, 3vw + 1rem, 3.2rem);
+            margin-bottom: 1rem;
+        }
+
+        .urgency p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .urgency .countdown {
+            margin: 0 auto 2.5rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: #0c1f11;
+            color: rgba(255,255,255,0.8);
+            padding: 3rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .socials a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: grid;
+            place-items: center;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .socials a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(129, 199, 132, 0.6); }
+            50% { transform: scale(1.04); box-shadow: 0 0 0 20px rgba(129, 199, 132, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(129, 199, 132, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .cta-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .countdown {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .floating-cta {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="inicio">
+        <div class="leaf-bg" aria-hidden="true">
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+            <div class="leaf"></div>
+        </div>
+        <div class="hero">
+            <div class="hero-copy">
+                <h1>Aprende el secreto de los viveros para multiplicar plantas infinitamente — sin gastar ni un centavo.</h1>
+                <p>Transforma una sola planta en docenas, ahorra dinero y crea una fuente de ingreso extra desde tu hogar. Multiplica tus plantas infinitamente, crea un jardín sin límites y convierte tu pasión por las plantas en una fuente de ingresos.</p>
+                <div class="cta-group">
+                    <a href="#comprar" class="btn-primary">👉 ¡QUIERO MI GUÍA AHORA!</a>
+                    <a href="#bonos" class="btn-secondary">Ver bonos incluidos</a>
+                </div>
+                <div class="countdown" role="timer" aria-live="polite">
+                    <div><span id="hero-hours">00</span>Horas</div>
+                    <div><span id="hero-minutes">00</span>Min</div>
+                    <div><span id="hero-seconds">00</span>Seg</div>
+                </div>
+            </div>
+            <div class="mockup">
+                <img src="https://cdn.shopify.com/s/files/1/0724/5716/2920/files/mockup-biblia-esquejes.png?v=1697054400" alt="Mockup del libro La Biblia de los Esquejes" />
+            </div>
+        </div>
+    </header>
+
+    <section class="benefits" id="beneficios">
+        <div class="section-container">
+            <h2>¿Por qué este método funciona?</h2>
+            <p>El programa combina conocimiento experto, imágenes reales y procesos probados por viveros profesionales para que tú también multipliques tus plantas infinitamente desde casa.</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌿</div>
+                    <h3>Aprende a multiplicar cualquier planta fácilmente.</h3>
+                    <p>Domina técnicas para esquejar desde suculentas hasta arbustos frutales. Un paso a paso claro y sin tecnicismos.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Ahorra dinero y evita comprar más semillas o esquejes.</h3>
+                    <p>Reduce tus gastos mensuales en jardinería creando nuevas plantas a partir de las que ya tienes.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💼</div>
+                    <h3>Convierte tu jardín en un pequeño negocio rentable.</h3>
+                    <p>Incluye estrategias para vender y obtener ingresos extra con tus creaciones verdes sin inversiones altas.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📸</div>
+                    <h3>Método paso a paso con fotos reales.</h3>
+                    <p>Imágenes reales de cada fase de enraizamiento para que copies los resultados sin miedo a equivocarte.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Resultados visibles en pocos días.</h3>
+                    <p>Observa cómo tus esquejes despiertan y generan raíces fuertes en tiempo récord cuando aplicas el método.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cost-section" id="costo">
+        <div class="section-container cost-inner">
+            <div class="cost-copy">
+                <h2>El costo de no saber esto</h2>
+                <p>💸 Cada planta cuesta $10. Compras 10 = $100. En un año, gastas cientos. Con este libro, podrás crear tus propias plantas GRATIS y vender el resto. Aprendes una vez, multiplicas toda la vida.</p>
+                <a href="#comprar" class="btn-primary">🔥 Invertir hoy para ahorrar siempre</a>
+            </div>
+            <div class="cost-media">
+                <img src="https://cdn.shopify.com/s/files/1/0724/5716/2920/files/esquejes-timeline.gif?v=1697054400" alt="Esquejes creciendo rápidamente" />
+            </div>
+        </div>
+    </section>
+
+    <section class="learn-section" id="aprenderas">
+        <div class="section-container learn-content">
+            <h2>Lo que aprenderás</h2>
+            <p>Cada capítulo te guía desde la selección del tallo perfecto hasta la venta del excedente. Nada se queda en teoría.</p>
+            <div class="learn-grid">
+                <div class="learn-item">
+                    <span>🌱</span>
+                    <h3>Cómo elegir el tallo perfecto</h3>
+                    <p>Identifica el momento exacto de corte, la longitud ideal y el tratamiento previo para asegurar el éxito.</p>
+                </div>
+                <div class="learn-item">
+                    <span>🌾</span>
+                    <h3>El tipo de tierra ideal</h3>
+                    <p>Fórmulas caseras y profesionales para sustratos aireados que aceleran el enraizamiento.</p>
+                </div>
+                <div class="learn-item">
+                    <span>🌤️</span>
+                    <h3>Cómo evitar que tus esquejes mueran</h3>
+                    <p>Control de humedad, luz y nutrientes para que cada brote crezca fuerte incluso si eres principiante.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bonuses" id="bonos">
+        <div class="section-container">
+            <h2>🎁 Además, recibirás 5 BONOS EXCLUSIVOS GRATIS</h2>
+            <p>Lleva tu jardín al siguiente nivel con herramientas premium para cultivar, cuidar y monetizar tus plantas.</p>
+            <div class="bonus-carousel">
+                <article class="bonus-card">
+                    <div class="bonus-tag">Bono 1️⃣</div>
+                    <h3>Guía de cuidados post-enraizamiento</h3>
+                    <p>Asegura que tus plantas vivan y crezcan fuertes con rutinas de nutrición y trasplante.</p>
+                </article>
+                <article class="bonus-card">
+                    <div class="bonus-tag">Bono 2️⃣</div>
+                    <h3>Manual de hierbas y condimentos domésticos</h3>
+                    <p>Descubre cómo cultivar tus propias especias aromáticas y aprovecharlas en la cocina diaria.</p>
+                </article>
+                <article class="bonus-card">
+                    <div class="bonus-tag">Bono 3️⃣</div>
+                    <h3>Guía de flores eternas</h3>
+                    <p>Las especies más resistentes para decorar tu hogar con color durante todo el año.</p>
+                </article>
+                <article class="bonus-card">
+                    <div class="bonus-tag">Bono 4️⃣</div>
+                    <h3>Plantas medicinales y sus usos domésticos</h3>
+                    <p>Aprovecha el poder de la naturaleza con recetas sencillas para el bienestar de tu familia.</p>
+                </article>
+                <article class="bonus-card">
+                    <div class="bonus-tag">Bono 5️⃣</div>
+                    <h3>Mini curso “Negocio Verde desde Casa”</h3>
+                    <p>Convierte tu pasión por las plantas en una fuente de ingresos constante con estrategias de venta online.</p>
+                </article>
+            </div>
+            <div style="text-align:center; margin-top: 3rem;">
+                <a href="#comprar" class="btn-primary">🔥 QUIERO MIS BONOS + EL LIBRO AHORA 🔥</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonios">
+        <div class="section-container">
+            <h2>Más de 40.000 personas ya están multiplicando sus plantas.</h2>
+            <p>Historias reales de jardineros y amantes de las plantas que ahora viven rodeados de verde — y con ingresos extra.</p>
+            <div class="testimonial-slider" aria-label="Testimonios de clientes">
+                <article class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p>“Tenía miedo de cortar mis plantas favoritas. Con el método descubrí lo fácil que era. Ahora regalo esquejes a mis amigos y vendo el resto en ferias locales.”</p>
+                    <div class="testimonial-name">
+                        <img src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?auto=format&fit=crop&w=80&q=60" alt="Foto de Ana" />
+                        <span>Ana Gutiérrez</span>
+                    </div>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p>“Aprendí a multiplicar mis suculentas sin gastar un centavo. El mini curso de negocio verde me ayudó a recuperar la inversión en una semana.”</p>
+                    <div class="testimonial-name">
+                        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=60" alt="Foto de Laura" />
+                        <span>Laura Méndez</span>
+                    </div>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p>“Soy mamá y trabajo desde casa. Ahora mis hijos ayudan a cuidar los esquejes y vendemos plantas los fines de semana. Una bendición para nuestras finanzas.”</p>
+                    <div class="testimonial-name">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=80&q=60" alt="Foto de Sofía" />
+                        <span>Sofía Ríos</span>
+                    </div>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p>“Nunca pensé que podría crear un jardín sin límites. Hoy tengo más de 200 plantas y una lista de espera de clientes.”</p>
+                    <div class="testimonial-name">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=80&q=60" alt="Foto de Daniela" />
+                        <span>Daniela Pérez</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="guarantee" id="garantia">
+        <div class="section-container">
+            <div class="guarantee-icon">🛡️</div>
+            <h2>Garantía total de satisfacción</h2>
+            <p>Si no ves resultados en 30 días, te devolvemos el 100% de tu dinero. Sin preguntas, sin complicaciones. Tu inversión está protegida.</p>
+            <a href="#comprar" class="btn-secondary">Sin riesgo, todo beneficio</a>
+        </div>
+    </section>
+
+    <section class="urgency" id="comprar">
+        <div class="section-container urgency-content">
+            <h2>⏰ Oferta especial por tiempo limitado: ¡Paga 1 y llévate 6!</h2>
+            <p>El precio vuelve a $39.99 cuando el contador llegue a cero. Aprovecha esta oportunidad única y empieza hoy mismo a multiplicar tus plantas infinitamente.</p>
+            <div class="countdown" role="timer" aria-live="polite">
+                <div><span id="final-hours">00</span>Horas</div>
+                <div><span id="final-minutes">00</span>Min</div>
+                <div><span id="final-seconds">00</span>Seg</div>
+            </div>
+            <a href="https://esquejespro.com/products/libro" class="btn-primary">✅ QUIERO EMPEZAR HOY MISMO</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>La Biblia de los Esquejes</h3>
+                <p>Multiplica tus plantas infinitamente, crea un jardín sin límites y transforma tu pasión en ingresos sostenibles.</p>
+            </div>
+            <div>
+                <h4>Enlaces útiles</h4>
+                <ul style="list-style:none; padding:0; margin:0; line-height:2;">
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#bonos">Bonos</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#garantia">Garantía</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <p>Soporte: <a href="mailto:hola@esquejespro.com">hola@esquejespro.com</a></p>
+                <p>Política de privacidad · Términos de uso</p>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram"><span aria-hidden="true">📸</span></a>
+                    <a href="#" aria-label="Facebook"><span aria-hidden="true">📘</span></a>
+                    <a href="#" aria-label="YouTube"><span aria-hidden="true">▶️</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Aprendes una vez. Multiplicas toda la vida. 🌿
+        </div>
+    </footer>
+
+    <a href="https://esquejespro.com/products/libro" class="btn-secondary floating-cta">Comprar ahora</a>
+
+    <script>
+        function startCountdown(durationMinutes, elements) {
+            const endTime = Date.now() + durationMinutes * 60 * 1000;
+
+            function update() {
+                const remaining = endTime - Date.now();
+                if (remaining <= 0) {
+                    elements.hours.textContent = '00';
+                    elements.minutes.textContent = '00';
+                    elements.seconds.textContent = '00';
+                    return;
+                }
+
+                const totalSeconds = Math.floor(remaining / 1000);
+                const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+                const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+                const seconds = String(totalSeconds % 60).padStart(2, '0');
+
+                elements.hours.textContent = hours;
+                elements.minutes.textContent = minutes;
+                elements.seconds.textContent = seconds;
+
+                requestAnimationFrame(update);
+            }
+
+            update();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroElements = {
+                hours: document.getElementById('hero-hours'),
+                minutes: document.getElementById('hero-minutes'),
+                seconds: document.getElementById('hero-seconds')
+            };
+
+            const finalElements = {
+                hours: document.getElementById('final-hours'),
+                minutes: document.getElementById('final-minutes'),
+                seconds: document.getElementById('final-seconds')
+            };
+
+            startCountdown(45, heroElements);
+            startCountdown(45, finalElements);
+        });
+    </script>
+</body>
+</html>
