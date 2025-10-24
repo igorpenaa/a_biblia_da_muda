@@ -9,13 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --green-dark: #2e7d32;
-            --green-light: #81c784;
-            --green-deep: #1b5e20;
-            --beige: #f3f0e6;
-            --gold: #fdd835;
-            --text-dark: #1b3b24;
-            --text-light: #f8fff8;
+            --green-900: #0f2f1c;
+            --green-800: #134326;
+            --green-700: #1b5e20;
+            --green-500: #43a047;
+            --green-300: #81c784;
+            --beige-100: #f4f1e6;
+            --beige-200: #ede7da;
+            --text-dark: #122415;
+            --text-muted: rgba(18, 36, 21, 0.75);
         }
 
         * {
@@ -25,109 +27,133 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: var(--beige);
+            background: var(--beige-100);
             color: var(--text-dark);
             scroll-behavior: smooth;
         }
 
         h1, h2, h3, h4 {
             margin: 0;
+            line-height: 1.1;
+        }
+
+        p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-muted);
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--gold), #ffb300);
-            color: #1a280a;
-            font-weight: 700;
+            gap: 0.75rem;
+            padding: 1rem 2.4rem;
             border-radius: 999px;
+            background: linear-gradient(135deg, var(--green-500), var(--green-300));
+            color: #f8fff8;
+            font-weight: 700;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            box-shadow: 0 15px 25px rgba(46, 125, 50, 0.25);
+            box-shadow: 0 20px 45px rgba(27, 94, 32, 0.35);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 35px rgba(46, 125, 50, 0.4);
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 26px 60px rgba(27, 94, 32, 0.45);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            padding: 0.85rem 1.8rem;
-            background: linear-gradient(135deg, var(--green-light), var(--green-dark));
-            color: white;
-            font-weight: 600;
+            gap: 0.6rem;
+            padding: 0.85rem 2rem;
             border-radius: 999px;
+            background: rgba(244, 241, 230, 0.1);
+            color: #f4f1e6;
+            font-weight: 600;
+            border: 1px solid rgba(244, 241, 230, 0.4);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            box-shadow: 0 12px 24px rgba(46, 125, 50, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 0.04em;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
 
         .btn-secondary:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 18px 28px rgba(46, 125, 50, 0.45);
+            background: rgba(244, 241, 230, 0.25);
+            transform: translateY(-2px);
         }
 
-        header {
+        header.hero {
             position: relative;
-            overflow: hidden;
             background: radial-gradient(circle at top left, rgba(129, 199, 132, 0.4), transparent 45%),
-                        radial-gradient(circle at bottom right, rgba(46, 125, 50, 0.45), transparent 50%),
-                        linear-gradient(135deg, rgba(46, 125, 50, 0.85), rgba(27, 94, 32, 0.9));
+                        linear-gradient(135deg, rgba(15, 47, 28, 0.9), rgba(19, 67, 38, 0.9)),
+                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=80') center/cover;
             color: white;
+            overflow: hidden;
         }
 
-        .leaf-bg {
+        .hero::after {
+            content: "";
             position: absolute;
             inset: 0;
-            overflow: hidden;
+            background: linear-gradient(180deg, rgba(15, 47, 28, 0.7) 0%, rgba(15, 47, 28, 0.95) 100%);
             z-index: 0;
         }
 
-        .leaf {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            background-image: url('https://images.unsplash.com/photo-1465146633011-14f9e5beab78?auto=format&fit=crop&w=300&q=60');
-            background-size: cover;
-            background-repeat: no-repeat;
-            opacity: 0.25;
-            filter: hue-rotate(30deg) saturate(1.2);
-            animation: floatLeaf 14s infinite ease-in-out;
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            background: rgba(15, 47, 28, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 2rem;
         }
 
-        .leaf:nth-child(odd) {
-            animation-duration: 18s;
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            color: rgba(244, 241, 230, 0.9);
+            font-weight: 500;
         }
 
-        .leaf:nth-child(1) { top: 10%; left: 5%; }
-        .leaf:nth-child(2) { top: 60%; left: 20%; }
-        .leaf:nth-child(3) { top: 30%; right: 15%; }
-        .leaf:nth-child(4) { bottom: 10%; right: 5%; }
-
-        @keyframes floatLeaf {
-            0% { transform: translateY(0) rotate(0deg) scale(1); }
-            50% { transform: translateY(-25px) rotate(6deg) scale(1.05); }
-            100% { transform: translateY(0) rotate(0deg) scale(1); }
-        }
-
-        .hero {
+        nav a {
+            color: inherit;
             position: relative;
-            z-index: 1;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.4rem;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(129, 199, 132, 0), rgba(129, 199, 132, 1), rgba(129, 199, 132, 0));
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 6rem 1.5rem 7rem;
+            padding: 7rem 1.5rem 6rem;
             display: grid;
             gap: 3rem;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -135,35 +161,33 @@
         }
 
         .hero-copy h1 {
-            font-size: clamp(2.6rem, 4vw + 1rem, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            text-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+            font-size: clamp(2.6rem, 4vw + 1rem, 4.6rem);
+            margin-bottom: 1.2rem;
+            text-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
         }
 
         .hero-copy p {
             font-size: 1.2rem;
-            max-width: 32rem;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
+            max-width: 36rem;
+            color: rgba(244, 241, 230, 0.92);
         }
 
-        .cta-group {
+        .hero-meta {
+            margin-top: 2.5rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
         .countdown {
-            margin-top: 2rem;
             display: inline-flex;
             gap: 1.2rem;
             padding: 1rem 1.8rem;
-            background: rgba(14, 43, 20, 0.5);
             border-radius: 999px;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(10px);
+            background: rgba(244, 241, 230, 0.08);
+            border: 1px solid rgba(244, 241, 230, 0.18);
+            box-shadow: inset 0 0 0 1px rgba(244, 241, 230, 0.05);
         }
 
         .countdown div {
@@ -172,310 +196,315 @@
 
         .countdown span {
             display: block;
-            font-size: 1.2rem;
             font-weight: 700;
-            color: var(--gold);
+            font-size: 1.25rem;
+            color: #f1f8e9;
         }
 
-        .mockup {
+        .hero-media {
             position: relative;
             display: flex;
             justify-content: center;
-            align-items: center;
         }
 
-        .mockup img {
-            width: min(100%, 420px);
-            filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.35));
-            animation: float 6s ease-in-out infinite;
+        .hero-media::after {
+            content: "";
+            position: absolute;
+            inset: 12% 8%;
+            background: radial-gradient(circle at top, rgba(129, 199, 132, 0.4), transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+        .hero-media img {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 460px);
+            border-radius: 28px;
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.45);
         }
 
-        section {
+        main section {
             padding: 5rem 1.5rem;
         }
 
         .section-container {
-            max-width: 1120px;
+            max-width: 1140px;
             margin: 0 auto;
         }
 
-        .benefits {
-            background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(243,240,230,0.7) 100%);
+        .section-heading {
+            text-transform: uppercase;
+            letter-spacing: 0.32em;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(27, 94, 32, 0.75);
+            margin-bottom: 0.8rem;
         }
 
-        .benefits-grid {
+        .feature-highlights {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(237, 231, 218, 0.7) 100%);
+        }
+
+        .feature-grid {
+            margin-top: 3rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
-            margin-top: 2.5rem;
         }
 
-        .benefit-card {
+        .feature-card {
             background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 20px 45px rgba(46, 125, 50, 0.12);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-radius: 26px;
+            padding: 2.2rem 2rem;
+            box-shadow: 0 18px 45px rgba(27, 94, 32, 0.12);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
-        .benefit-card:hover {
+        .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 26px 60px rgba(46, 125, 50, 0.18);
+            box-shadow: 0 25px 60px rgba(27, 94, 32, 0.18);
         }
 
-        .benefit-icon {
+        .feature-icon {
             width: 64px;
             height: 64px;
-            border-radius: 16px;
-            background: rgba(129, 199, 132, 0.25);
+            border-radius: 18px;
+            background: rgba(67, 160, 71, 0.18);
             display: grid;
             place-items: center;
-            margin-bottom: 1.2rem;
-            color: var(--green-dark);
             font-size: 1.8rem;
+            color: var(--green-700);
+            margin-bottom: 1.1rem;
         }
 
-        .cost-section {
-            background: linear-gradient(135deg, #134b21, #1f6a2d);
-            color: var(--text-light);
+        .modules {
+            background: linear-gradient(135deg, rgba(15, 47, 28, 0.95), rgba(19, 67, 38, 0.95));
+            color: #f4f1e6;
             position: relative;
             overflow: hidden;
         }
 
-        .cost-section::before {
+        .modules::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=60') center/cover;
-            opacity: 0.08;
+            background: url('https://images.unsplash.com/photo-1464890100898-a385f744067f?auto=format&fit=crop&w=1400&q=80') center/cover;
+            opacity: 0.15;
         }
 
-        .cost-inner {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            align-items: center;
-        }
-
-        .cost-copy h2 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cost-copy p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-        }
-
-        .cost-media {
-            display: flex;
-            justify-content: center;
-        }
-
-        .cost-media img {
-            width: min(100%, 360px);
-            border-radius: 24px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
-        }
-
-        .learn-section {
-            background: url('https://images.unsplash.com/photo-1429095687696-3227bb0dc1b5?auto=format&fit=crop&w=1200&q=60') center/cover;
-            position: relative;
-            color: var(--text-light);
-        }
-
-        .learn-section::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(18, 56, 34, 0.7);
-        }
-
-        .learn-content {
+        .modules .section-container {
             position: relative;
             z-index: 1;
         }
 
-        .learn-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-
-        .learn-item {
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            padding: 2.2rem 2rem;
-            backdrop-filter: blur(12px);
-            text-align: center;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
-            transition: transform 0.4s ease;
-        }
-
-        .learn-item:hover {
-            transform: translateY(-8px);
-        }
-
-        .learn-item span {
-            font-size: 2.4rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .bonuses {
-            background: var(--beige);
-        }
-
-        .bonus-carousel {
+        .module-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .bonus-card {
-            background: white;
+        .module-card {
+            background: rgba(244, 241, 230, 0.08);
             border-radius: 24px;
             padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 18px 40px rgba(46, 125, 50, 0.15);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: grid;
+            gap: 1.2rem;
         }
 
-        .bonus-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(129, 199, 132, 0.15), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+        .module-card img {
+            width: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+            height: 180px;
         }
 
-        .bonus-card:hover {
-            transform: translateY(-12px) scale(1.01);
-            box-shadow: 0 25px 55px rgba(46, 125, 50, 0.22);
+        .journey {
+            background: white;
         }
 
-        .bonus-card:hover::after {
-            opacity: 1;
+        .journey-grid {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
         }
 
-        .bonus-tag {
-            font-weight: 700;
-            color: var(--green-dark);
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.05em;
+        .journey-step {
+            background: rgba(67, 160, 71, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(67, 160, 71, 0.18);
+        }
+
+        .journey-step strong {
+            font-size: 1.1rem;
+            color: var(--green-700);
+        }
+
+        .gallery {
+            background: linear-gradient(180deg, rgba(237, 231, 218, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
+        }
+
+        .gallery-grid {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 22px;
+            object-fit: cover;
+            height: 240px;
+            box-shadow: 0 15px 30px rgba(27, 94, 32, 0.18);
+        }
+
+        .extras {
+            background: white;
+        }
+
+        .extras-grid {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .extra-card {
+            background: var(--beige-200);
+            border-radius: 22px;
+            padding: 1.6rem;
+            box-shadow: 0 20px 40px rgba(27, 94, 32, 0.12);
+            display: grid;
+            gap: 1rem;
+        }
+
+        .extra-card img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            height: 240px;
         }
 
         .testimonials {
-            background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(129,199,132,0.2));
+            background: linear-gradient(135deg, rgba(67, 160, 71, 0.15), rgba(27, 94, 32, 0.3));
         }
 
-        .testimonial-slider {
+        .testimonial-grid {
+            margin-top: 3rem;
             display: grid;
-            grid-auto-flow: column;
-            grid-auto-columns: minmax(280px, 1fr);
-            gap: 1.5rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .testimonial-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 2rem;
-            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.15);
-            scroll-snap-align: start;
-            min-height: 260px;
+            box-shadow: 0 20px 40px rgba(27, 94, 32, 0.15);
         }
 
-        .testimonial-rating {
+        .testimonial-card .rating {
             color: #fdd835;
             font-size: 1.1rem;
-            margin-bottom: 0.8rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
         }
 
-        .testimonial-name {
-            font-weight: 600;
-            margin-top: 1.5rem;
+        .testimonial-user {
+            margin-top: 1.4rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.9rem;
         }
 
-        .testimonial-name img {
-            width: 40px;
-            height: 40px;
+        .testimonial-user img {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             object-fit: cover;
         }
 
-        .guarantee {
-            background: linear-gradient(135deg, var(--green-deep), #0f331a);
-            color: var(--text-light);
-            text-align: center;
+        .faq {
+            background: white;
         }
 
-        .guarantee-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+        .faq-list {
+            margin-top: 2.5rem;
             display: grid;
-            place-items: center;
-            font-size: 2.4rem;
+            gap: 1rem;
         }
 
-        .urgency {
-            background: url('https://images.unsplash.com/photo-1484980972926-edee96e0960d?auto=format&fit=crop&w=1200&q=60') center/cover;
+        details {
+            background: rgba(67, 160, 71, 0.08);
+            border-radius: 18px;
+            padding: 1.2rem 1.6rem;
+            border: 1px solid rgba(67, 160, 71, 0.18);
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.4rem;
+            color: var(--green-700);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        details p {
+            margin-top: 0.8rem;
+        }
+
+        .cta-final {
             position: relative;
-            color: white;
+            background: linear-gradient(135deg, rgba(15, 47, 28, 0.95), rgba(19, 67, 38, 0.95)),
+                        url('https://images.unsplash.com/photo-1465146633011-14f9e5beab78?auto=format&fit=crop&w=1400&q=80') center/cover;
+            color: #f4f1e6;
+            text-align: center;
+            overflow: hidden;
         }
 
-        .urgency::before {
+        .cta-final::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(8, 36, 16, 0.72);
+            background: rgba(15, 47, 28, 0.6);
         }
 
-        .urgency-content {
+        .cta-final .section-container {
             position: relative;
             z-index: 1;
-            text-align: center;
-            max-width: 720px;
-            margin: 0 auto;
+            display: grid;
+            justify-items: center;
+            gap: 2rem;
         }
 
-        .urgency h2 {
-            font-size: clamp(2.2rem, 3vw + 1rem, 3.2rem);
-            margin-bottom: 1rem;
-        }
-
-        .urgency p {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .urgency .countdown {
-            margin: 0 auto 2.5rem;
-            background: rgba(0, 0, 0, 0.3);
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(27, 94, 32, 0.25);
         }
 
         footer {
-            background: #0c1f11;
-            color: rgba(255,255,255,0.8);
+            background: #0b1f13;
+            color: rgba(244, 241, 230, 0.9);
             padding: 3rem 1.5rem;
         }
 
@@ -487,57 +516,52 @@
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         }
 
-        .footer-bottom {
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1.5rem;
-            text-align: center;
-            font-weight: 500;
-        }
-
         .socials {
             display: flex;
             gap: 1rem;
+            margin-top: 1rem;
         }
 
         .socials a {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
             display: grid;
             place-items: center;
-            transition: background 0.3s ease, transform 0.3s ease;
+            background: rgba(244, 241, 230, 0.12);
         }
 
-        .socials a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-4px);
-        }
-
-        .floating-cta {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 999;
-            animation: pulse 2.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(129, 199, 132, 0.6); }
-            50% { transform: scale(1.04); box-shadow: 0 0 0 20px rgba(129, 199, 132, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(129, 199, 132, 0); }
+        .footer-bottom {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: rgba(244, 241, 230, 0.6);
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            .cta-group {
+            nav {
+                position: static;
+                background: rgba(15, 47, 28, 0.92);
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-content {
+                padding-top: 6rem;
+            }
+
+            .hero-meta {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
             .countdown {
                 width: 100%;
-                justify-content: center;
+                justify-content: space-around;
             }
 
             .floating-cta {
@@ -549,222 +573,263 @@
     </style>
 </head>
 <body>
-    <header id="inicio">
-        <div class="leaf-bg" aria-hidden="true">
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-        </div>
-        <div class="hero">
+    <header class="hero" id="inicio">
+        <nav aria-label="Principal">
+            <ul>
+                <li><a href="#porque">¿Por qué funciona?</a></li>
+                <li><a href="#modulos">Módulos</a></li>
+                <li><a href="#galeria">Resultados</a></li>
+                <li><a href="#guias">Guías extra</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#comprar">Comprar</a></li>
+            </ul>
+        </nav>
+        <div class="hero-content">
             <div class="hero-copy">
-                <h1>Aprende el secreto de los viveros para multiplicar plantas infinitamente — sin gastar ni un centavo.</h1>
-                <p>Transforma una sola planta en docenas, ahorra dinero y crea una fuente de ingreso extra desde tu hogar. Multiplica tus plantas infinitamente, crea un jardín sin límites y convierte tu pasión por las plantas en una fuente de ingresos.</p>
-                <div class="cta-group">
-                    <a href="#comprar" class="btn-primary">👉 ¡QUIERO MI GUÍA AHORA!</a>
-                    <a href="#bonos" class="btn-secondary">Ver bonos incluidos</a>
-                </div>
-                <div class="countdown" role="timer" aria-live="polite">
-                    <div><span id="hero-hours">00</span>Horas</div>
-                    <div><span id="hero-minutes">00</span>Min</div>
-                    <div><span id="hero-seconds">00</span>Seg</div>
+                <h1>La Biblia de los Esquejes: domina el método verde que usan los viveros profesionales.</h1>
+                <p>Aprende paso a paso a multiplicar cualquier planta, construir tu propio jardín infinito y generar ingresos adicionales desde casa. Con técnicas reales, guías ilustradas y acompañamiento continuo.</p>
+                <div class="hero-meta">
+                    <a class="btn-primary" href="#comprar">🌱 ¡Quiero empezar hoy!</a>
+                    <div class="countdown" role="timer" aria-live="polite">
+                        <div><span id="hero-hours">00</span>Horas</div>
+                        <div><span id="hero-minutes">00</span>Min</div>
+                        <div><span id="hero-seconds">00</span>Seg</div>
+                    </div>
                 </div>
             </div>
-            <div class="mockup">
-                <img src="https://cdn.shopify.com/s/files/1/0724/5716/2920/files/mockup-biblia-esquejes.png?v=1697054400" alt="Mockup del libro La Biblia de los Esquejes" />
+            <div class="hero-media">
+                <img src="https://cdn.midjourney.com/1f5a5867-66b1-4214-a1d8-1a7ce73fe67a/0_0.png" alt="Planta brotando en manos" />
             </div>
         </div>
     </header>
 
-    <section class="benefits" id="beneficios">
-        <div class="section-container">
-            <h2>¿Por qué este método funciona?</h2>
-            <p>El programa combina conocimiento experto, imágenes reales y procesos probados por viveros profesionales para que tú también multipliques tus plantas infinitamente desde casa.</p>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌿</div>
-                    <h3>Aprende a multiplicar cualquier planta fácilmente.</h3>
-                    <p>Domina técnicas para esquejar desde suculentas hasta arbustos frutales. Un paso a paso claro y sin tecnicismos.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3>Ahorra dinero y evita comprar más semillas o esquejes.</h3>
-                    <p>Reduce tus gastos mensuales en jardinería creando nuevas plantas a partir de las que ya tienes.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💼</div>
-                    <h3>Convierte tu jardín en un pequeño negocio rentable.</h3>
-                    <p>Incluye estrategias para vender y obtener ingresos extra con tus creaciones verdes sin inversiones altas.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📸</div>
-                    <h3>Método paso a paso con fotos reales.</h3>
-                    <p>Imágenes reales de cada fase de enraizamiento para que copies los resultados sin miedo a equivocarte.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>Resultados visibles en pocos días.</h3>
-                    <p>Observa cómo tus esquejes despiertan y generan raíces fuertes en tiempo récord cuando aplicas el método.</p>
+    <main>
+        <section class="feature-highlights" id="porque">
+            <div class="section-container">
+                <div class="section-heading">Multiplica tu jardín</div>
+                <h2>Convierte una sola planta en decenas con un sistema testado en viveros.</h2>
+                <p>Un programa completo que combina teoría fácil de entender con demostraciones visuales. Ideal para principiantes, amantes de los jardines y emprendedores verdes.</p>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">🌿</div>
+                        <h3>Procedimientos claros</h3>
+                        <p>Diagramas, fotografías y checklists que guían cada corte, sustrato y trasplante para evitar errores costosos.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🧪</div>
+                        <h3>Recetas de enraizamiento</h3>
+                        <p>Fórmulas naturales y económicas para activar raíces poderosas incluso en climas difíciles.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">💼</div>
+                        <h3>Ruta de monetización</h3>
+                        <p>Planifica tu producción, define precios y vende tus plantas en mercados locales o en línea.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <h3>Resultados rápidos</h3>
+                        <p>Aprende a cuidar el ambiente perfecto para que tus esquejes respondan en cuestión de días.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="cost-section" id="costo">
-        <div class="section-container cost-inner">
-            <div class="cost-copy">
-                <h2>El costo de no saber esto</h2>
-                <p>💸 Cada planta cuesta $10. Compras 10 = $100. En un año, gastas cientos. Con este libro, podrás crear tus propias plantas GRATIS y vender el resto. Aprendes una vez, multiplicas toda la vida.</p>
-                <a href="#comprar" class="btn-primary">🔥 Invertir hoy para ahorrar siempre</a>
-            </div>
-            <div class="cost-media">
-                <img src="https://cdn.shopify.com/s/files/1/0724/5716/2920/files/esquejes-timeline.gif?v=1697054400" alt="Esquejes creciendo rápidamente" />
-            </div>
-        </div>
-    </section>
-
-    <section class="learn-section" id="aprenderas">
-        <div class="section-container learn-content">
-            <h2>Lo que aprenderás</h2>
-            <p>Cada capítulo te guía desde la selección del tallo perfecto hasta la venta del excedente. Nada se queda en teoría.</p>
-            <div class="learn-grid">
-                <div class="learn-item">
-                    <span>🌱</span>
-                    <h3>Cómo elegir el tallo perfecto</h3>
-                    <p>Identifica el momento exacto de corte, la longitud ideal y el tratamiento previo para asegurar el éxito.</p>
-                </div>
-                <div class="learn-item">
-                    <span>🌾</span>
-                    <h3>El tipo de tierra ideal</h3>
-                    <p>Fórmulas caseras y profesionales para sustratos aireados que aceleran el enraizamiento.</p>
-                </div>
-                <div class="learn-item">
-                    <span>🌤️</span>
-                    <h3>Cómo evitar que tus esquejes mueran</h3>
-                    <p>Control de humedad, luz y nutrientes para que cada brote crezca fuerte incluso si eres principiante.</p>
+        <section class="modules" id="modulos">
+            <div class="section-container">
+                <div class="section-heading">Plan de estudio</div>
+                <h2>Los módulos que te llevan del primer corte a un vivero rentable.</h2>
+                <div class="module-grid">
+                    <article class="module-card">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Brote en maceta iluminado" />
+                        <h3>Módulo 1 · Fundamentos botánicos</h3>
+                        <p>Comprende la fisiología de los tallos, cuándo cortar y cómo preparar las herramientas para un enraizamiento seguro.</p>
+                    </article>
+                    <article class="module-card">
+                        <img src="https://cdn.midjourney.com/7a0e1195-7036-423f-948d-784f8ba7d422/0_3.png" alt="Plantines en mano listos para plantar" />
+                        <h3>Módulo 2 · Técnicas de esquejado</h3>
+                        <p>Domina técnicas para suculentas, aromáticas y arbustos. Incluye tablas de tiempos, humedad y luz ideales.</p>
+                    </article>
+                    <article class="module-card">
+                        <img src="https://cdn.midjourney.com/8d43a1df-e07f-4dea-a8fd-f2dc7c79a844/0_0.png" alt="Plantines en bandeja de cultivo" />
+                        <h3>Módulo 3 · Laboratorio de raíces</h3>
+                        <p>Aprende a diseñar bandejas, propagadores caseros y mezclas de sustratos que aceleran el crecimiento.</p>
+                    </article>
+                    <article class="module-card">
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80" alt="Vivero con múltiples plantas" />
+                        <h3>Módulo 4 · Negocio verde</h3>
+                        <p>Crea tu catálogo, define tus márgenes y lanza tu primera campaña de ventas para recuperar la inversión.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="bonuses" id="bonos">
-        <div class="section-container">
-            <h2>🎁 Además, recibirás 5 BONOS EXCLUSIVOS GRATIS</h2>
-            <p>Lleva tu jardín al siguiente nivel con herramientas premium para cultivar, cuidar y monetizar tus plantas.</p>
-            <div class="bonus-carousel">
-                <article class="bonus-card">
-                    <div class="bonus-tag">Bono 1️⃣</div>
-                    <h3>Guía de cuidados post-enraizamiento</h3>
-                    <p>Asegura que tus plantas vivan y crezcan fuertes con rutinas de nutrición y trasplante.</p>
-                </article>
-                <article class="bonus-card">
-                    <div class="bonus-tag">Bono 2️⃣</div>
-                    <h3>Manual de hierbas y condimentos domésticos</h3>
-                    <p>Descubre cómo cultivar tus propias especias aromáticas y aprovecharlas en la cocina diaria.</p>
-                </article>
-                <article class="bonus-card">
-                    <div class="bonus-tag">Bono 3️⃣</div>
-                    <h3>Guía de flores eternas</h3>
-                    <p>Las especies más resistentes para decorar tu hogar con color durante todo el año.</p>
-                </article>
-                <article class="bonus-card">
-                    <div class="bonus-tag">Bono 4️⃣</div>
-                    <h3>Plantas medicinales y sus usos domésticos</h3>
-                    <p>Aprovecha el poder de la naturaleza con recetas sencillas para el bienestar de tu familia.</p>
-                </article>
-                <article class="bonus-card">
-                    <div class="bonus-tag">Bono 5️⃣</div>
-                    <h3>Mini curso “Negocio Verde desde Casa”</h3>
-                    <p>Convierte tu pasión por las plantas en una fuente de ingresos constante con estrategias de venta online.</p>
-                </article>
+        <section class="journey" id="como-funciona">
+            <div class="section-container">
+                <div class="section-heading">Tu transformación</div>
+                <h2>Una ruta guiada para ver brotes fuertes en 30 días.</h2>
+                <div class="journey-grid">
+                    <article class="journey-step">
+                        <strong>Semana 1 · Preparación</strong>
+                        <p>Evalúa tus plantas, selecciona tallos y prepara la estación de propagación con herramientas higienizadas.</p>
+                    </article>
+                    <article class="journey-step">
+                        <strong>Semana 2 · Enraizamiento</strong>
+                        <p>Aplica técnicas para activar raíces, controla humedad y aprende a detectar señales de estrés a tiempo.</p>
+                    </article>
+                    <article class="journey-step">
+                        <strong>Semana 3 · Aclimatación</strong>
+                        <p>Transfiere a macetas individuales, fortalece el follaje y planifica la producción continua.</p>
+                    </article>
+                    <article class="journey-step">
+                        <strong>Semana 4 · Monetización</strong>
+                        <p>Arma kits de venta, crea combos temáticos y lanza tus primeras ofertas para clientes locales.</p>
+                    </article>
+                </div>
             </div>
-            <div style="text-align:center; margin-top: 3rem;">
-                <a href="#comprar" class="btn-primary">🔥 QUIERO MIS BONOS + EL LIBRO AHORA 🔥</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="testimonials" id="testimonios">
-        <div class="section-container">
-            <h2>Más de 40.000 personas ya están multiplicando sus plantas.</h2>
-            <p>Historias reales de jardineros y amantes de las plantas que ahora viven rodeados de verde — y con ingresos extra.</p>
-            <div class="testimonial-slider" aria-label="Testimonios de clientes">
-                <article class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p>“Tenía miedo de cortar mis plantas favoritas. Con el método descubrí lo fácil que era. Ahora regalo esquejes a mis amigos y vendo el resto en ferias locales.”</p>
-                    <div class="testimonial-name">
-                        <img src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?auto=format&fit=crop&w=80&q=60" alt="Foto de Ana" />
-                        <span>Ana Gutiérrez</span>
-                    </div>
-                </article>
-                <article class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p>“Aprendí a multiplicar mis suculentas sin gastar un centavo. El mini curso de negocio verde me ayudó a recuperar la inversión en una semana.”</p>
-                    <div class="testimonial-name">
-                        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=60" alt="Foto de Laura" />
-                        <span>Laura Méndez</span>
-                    </div>
-                </article>
-                <article class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p>“Soy mamá y trabajo desde casa. Ahora mis hijos ayudan a cuidar los esquejes y vendemos plantas los fines de semana. Una bendición para nuestras finanzas.”</p>
-                    <div class="testimonial-name">
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=80&q=60" alt="Foto de Sofía" />
-                        <span>Sofía Ríos</span>
-                    </div>
-                </article>
-                <article class="testimonial-card">
-                    <div class="testimonial-rating">★★★★★</div>
-                    <p>“Nunca pensé que podría crear un jardín sin límites. Hoy tengo más de 200 plantas y una lista de espera de clientes.”</p>
-                    <div class="testimonial-name">
-                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=80&q=60" alt="Foto de Daniela" />
-                        <span>Daniela Pérez</span>
-                    </div>
-                </article>
+        <section class="gallery" id="galeria">
+            <div class="section-container">
+                <div class="section-heading">Resultados reales</div>
+                <h2>Lo que puedes lograr con el método.</h2>
+                <div class="gallery-grid">
+                    <img src="https://cdn.midjourney.com/20f33648-1a4f-4171-8ca9-63e33486ad13/0_2.png" alt="Planta de romero al amanecer" />
+                    <img src="https://cdn.midjourney.com/13df6d20-5309-4a1a-89bb-d53b43c59571/0_0.png" alt="Esquejes recién enraizados" />
+                    <img src="https://cdn.midjourney.com/ba3a945f-1a1c-401a-a94f-f8401f4693d3/0_2.png" alt="Bandejas de cultivo con esquejes" />
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="guarantee" id="garantia">
-        <div class="section-container">
-            <div class="guarantee-icon">🛡️</div>
-            <h2>Garantía total de satisfacción</h2>
-            <p>Si no ves resultados en 30 días, te devolvemos el 100% de tu dinero. Sin preguntas, sin complicaciones. Tu inversión está protegida.</p>
-            <a href="#comprar" class="btn-secondary">Sin riesgo, todo beneficio</a>
-        </div>
-    </section>
-
-    <section class="urgency" id="comprar">
-        <div class="section-container urgency-content">
-            <h2>⏰ Oferta especial por tiempo limitado: ¡Paga 1 y llévate 6!</h2>
-            <p>El precio vuelve a $39.99 cuando el contador llegue a cero. Aprovecha esta oportunidad única y empieza hoy mismo a multiplicar tus plantas infinitamente.</p>
-            <div class="countdown" role="timer" aria-live="polite">
-                <div><span id="final-hours">00</span>Horas</div>
-                <div><span id="final-minutes">00</span>Min</div>
-                <div><span id="final-seconds">00</span>Seg</div>
+        <section class="extras" id="guias">
+            <div class="section-container">
+                <div class="section-heading">Incluido sin costo</div>
+                <h2>Biblioteca de guías complementarias para dominar cada etapa.</h2>
+                <p>Recibe material descargable con tutoriales específicos. Perfectos para imprimir o consultar desde el móvil cuando estés trabajando con tus plantas.</p>
+                <div class="extras-grid">
+                    <article class="extra-card">
+                        <img src="https://cdn.midjourney.com/e29c0a4a-3ba0-44df-9bc5-044bd25243d2/0_2.png" alt="Guía emprender desde cero" />
+                        <h3>Guía · Emprender desde cero</h3>
+                        <p>Aprende a estimar costos iniciales, fijar objetivos mensuales y crear tu marca verde.</p>
+                    </article>
+                    <article class="extra-card">
+                        <img src="https://cdn.midjourney.com/bd31c947-5e84-49a7-a5e9-4af2fe468939/0_2.png" alt="Guía de errores comunes" />
+                        <h3>Guía · 10 errores comunes</h3>
+                        <p>Evita los fallos más frecuentes al hacer esquejes y mantén cada planta en perfecto estado.</p>
+                    </article>
+                    <article class="extra-card">
+                        <img src="https://cdn.midjourney.com/30f8dc4b-4386-4a57-8626-8a6f96b5f23d/0_2.png" alt="Guía de suculentas" />
+                        <h3>Guía · Multiplicar suculentas</h3>
+                        <p>Especial para amantes de las suculentas: formatos, iluminación y cuidados post trasplante.</p>
+                    </article>
+                    <article class="extra-card">
+                        <img src="https://cdn.midjourney.com/e7cc6fb3-b1cf-4a35-b883-714a977b8f47/0_2.png" alt="Guía de sustratos" />
+                        <h3>Guía · Sustrato ideal</h3>
+                        <p>Descubre mezclas profesionales y caseras para cada tipo de planta y clima.</p>
+                    </article>
+                </div>
             </div>
-            <a href="https://esquejespro.com/products/libro" class="btn-primary">✅ QUIERO EMPEZAR HOY MISMO</a>
-        </div>
-    </section>
+        </section>
+
+        <section class="testimonials" id="testimonios">
+            <div class="section-container">
+                <div class="section-heading">Historias verdes</div>
+                <h2>Más de 40.000 alumnos transformaron su pasión en un vivero abundante.</h2>
+                <div class="testimonial-grid" aria-label="Testimonios de estudiantes">
+                    <article class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p>“Nunca imaginé que podría duplicar mis aromáticas tan rápido. El paso a paso es claro y las fotografías ayudan muchísimo. Ahora vendo kits de romero en mi barrio.”</p>
+                        <div class="testimonial-user">
+                            <img src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?auto=format&fit=crop&w=80&q=60" alt="Foto de Ana" />
+                            <div>
+                                <strong>Ana Gutiérrez</strong><br>
+                                <span>Emprendedora verde</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p>“Comencé sin experiencia y hoy tengo un invernadero casero lleno de esquejes saludables. El módulo de negocio me permitió recuperar la inversión en una semana.”</p>
+                        <div class="testimonial-user">
+                            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=80&q=60" alt="Foto de Laura" />
+                            <div>
+                                <strong>Laura Méndez</strong><br>
+                                <span>Diseñadora floral</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p>“Mis hijos ahora ayudan a cuidar los esquejes y vendemos plantas los fines de semana. Es un proyecto familiar que nos acerca y genera ingresos extra.”</p>
+                        <div class="testimonial-user">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=80&q=60" alt="Foto de Sofía" />
+                            <div>
+                                <strong>Sofía Ríos</strong><br>
+                                <span>Mamá jardinera</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <div class="section-container">
+                <div class="section-heading">Dudas frecuentes</div>
+                <h2>Todo lo que necesitas saber antes de unirte.</h2>
+                <div class="faq-list">
+                    <details>
+                        <summary>¿Necesito experiencia previa?</summary>
+                        <p>No. El programa está diseñado para principiantes. Iniciarás con conceptos básicos y avanzarás con demostraciones visuales hasta dominar técnicas avanzadas.</p>
+                    </details>
+                    <details>
+                        <summary>¿Cuánto tiempo debo dedicar por semana?</summary>
+                        <p>Entre 2 y 4 horas bastan para seguir los videos y aplicar los ejercicios prácticos. Puedes avanzar a tu ritmo y repetir las lecciones cuantas veces quieras.</p>
+                    </details>
+                    <details>
+                        <summary>¿Cómo recibo las guías y bonos?</summary>
+                        <p>Al confirmar la compra obtendrás acceso inmediato a la plataforma con descargas en PDF, plantillas editables y actualizaciones gratuitas.</p>
+                    </details>
+                    <details>
+                        <summary>¿Qué pasa si no veo resultados?</summary>
+                        <p>Contamos con una garantía de satisfacción de 30 días. Si aplicas el método y no notas mejoras, solicitas la devolución sin preguntas.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-final" id="comprar">
+            <div class="section-container">
+                <h2>Oferta especial: acceso completo + biblioteca de guías por un pago único.</h2>
+                <p>El precio volverá a $39.99 cuando el contador llegue a cero. Aprovecha y asegura tu entrada al método verde más completo.</p>
+                <div class="countdown" role="timer" aria-live="polite">
+                    <div><span id="final-hours">00</span>Horas</div>
+                    <div><span id="final-minutes">00</span>Min</div>
+                    <div><span id="final-seconds">00</span>Seg</div>
+                </div>
+                <a class="btn-primary" href="https://esquejespro.com/products/libro">✅ Quiero mi acceso completo</a>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-content">
             <div>
                 <h3>La Biblia de los Esquejes</h3>
-                <p>Multiplica tus plantas infinitamente, crea un jardín sin límites y transforma tu pasión en ingresos sostenibles.</p>
+                <p>Multiplica tus plantas infinitamente, crea un jardín sin límites y transforma tu pasión verde en ingresos sostenibles.</p>
             </div>
             <div>
-                <h4>Enlaces útiles</h4>
+                <h4>Explora</h4>
                 <ul style="list-style:none; padding:0; margin:0; line-height:2;">
-                    <li><a href="#beneficios">Beneficios</a></li>
-                    <li><a href="#bonos">Bonos</a></li>
-                    <li><a href="#testimonios">Testimonios</a></li>
-                    <li><a href="#garantia">Garantía</a></li>
+                    <li><a href="#porque">Beneficios</a></li>
+                    <li><a href="#modulos">Módulos</a></li>
+                    <li><a href="#galeria">Resultados</a></li>
+                    <li><a href="#testimonios">Historias</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Contacto</h4>
-                <p>Soporte: <a href="mailto:hola@esquejespro.com">hola@esquejespro.com</a></p>
+                <h4>Soporte</h4>
+                <p>Escríbenos a <a href="mailto:hola@esquejespro.com">hola@esquejespro.com</a></p>
                 <p>Política de privacidad · Términos de uso</p>
                 <div class="socials">
                     <a href="#" aria-label="Instagram"><span aria-hidden="true">📸</span></a>
@@ -773,12 +838,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            Aprendes una vez. Multiplicas toda la vida. 🌿
-        </div>
+        <div class="footer-bottom">Aprendes una vez. Multiplicas toda la vida. 🌿</div>
     </footer>
 
-    <a href="https://esquejespro.com/products/libro" class="btn-secondary floating-cta">Comprar ahora</a>
+    <a href="https://esquejespro.com/products/libro" class="btn-primary floating-cta">Comprar ahora</a>
 
     <script>
         function startCountdown(durationMinutes, elements) {
